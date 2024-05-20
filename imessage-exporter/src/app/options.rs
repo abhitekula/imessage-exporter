@@ -34,12 +34,12 @@ pub const OPTION_BYPASS_FREE_SPACE_CHECK: &str = "ignore-disk-warning";
 pub const OPTION_USE_CALLER_ID: &str = "use-caller-id";
 
 // Other CLI Text
-pub const SUPPORTED_FILE_TYPES: &str = "txt, html";
+pub const SUPPORTED_FILE_TYPES: &str = "txt, html, jsonl";
 pub const SUPPORTED_PLATFORMS: &str = "macOS, iOS";
 pub const SUPPORTED_ATTACHMENT_MANAGER_MODES: &str = "compatible, efficient, disabled";
 pub const ABOUT: &str = concat!(
     "The `imessage-exporter` binary exports iMessage data to\n",
-    "`txt` or `html` formats. It can also run diagnostics\n",
+    "`txt`, `html`, or `jsonl` formats. It can also run diagnostics\n",
     "to find problems with the iMessage database."
 );
 

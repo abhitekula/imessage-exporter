@@ -11,6 +11,8 @@ pub enum ExportType {
     Html,
     /// Text file export
     Txt,
+    /// JSONL file export
+    Jsonl,
 }
 
 impl ExportType {
@@ -19,6 +21,7 @@ impl ExportType {
         match platform.to_lowercase().as_str() {
             "txt" => Some(Self::Txt),
             "html" => Some(Self::Html),
+            "jsonl" => Some(Self::Jsonl),
             _ => None,
         }
     }
@@ -29,6 +32,7 @@ impl Display for ExportType {
         match self {
             ExportType::Txt => write!(fmt, "txt"),
             ExportType::Html => write!(fmt, "html"),
+            ExportType::Jsonl => write!(fmt, "jsonl"),
         }
     }
 }
@@ -61,9 +65,16 @@ mod tests {
     }
 
     #[test]
+    fn can_parse_jsonl_any_case() {
+        assert!(matches!(ExportType::from_cli("jsonl"), Some(ExportType::Jsonl)));
+        assert!(matches!(ExportType::from_cli("JSONL"), Some(ExportType::Jsonl)));
+        assert!(matches!(ExportType::from_cli("jSOnL"), Some(ExportType::Jsonl)));
+    }
+
+    #[test]
     fn cant_parse_invalid() {
         assert!(ExportType::from_cli("pdf").is_none());
-        assert!(ExportType::from_cli("json").is_none());
+        assert!(ExportType::from_cli("csv").is_none());
         assert!(ExportType::from_cli("").is_none());
     }
 }

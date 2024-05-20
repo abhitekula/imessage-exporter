@@ -7,6 +7,7 @@ use std::{collections::HashMap, io::Read};
 use chrono::{offset::Local, DateTime};
 use plist::Value;
 use rusqlite::{blob::Blob, Connection, Error, Result, Row, Statement};
+use serde::Serialize;
 
 use crate::{
     error::{message::MessageError, table::TableError},
@@ -71,7 +72,9 @@ pub enum Service<'a> {
 
 /// Represents a single row in the `message` table.
 #[derive(Debug)]
+
 #[allow(non_snake_case)]
+#[derive(Serialize)]
 pub struct Message {
     pub rowid: i32,
     pub guid: String,
